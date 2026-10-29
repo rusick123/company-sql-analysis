@@ -1,52 +1,94 @@
-# Company Sales Analysis — SQL
+# Анализ продаж компании — SQL-проект
 
-## About the project
+## О проекте
 
-This project is a small relational database for a fictional company. It stores information about employees, departments, products, customers, orders, and order items.
+Учебный проект по проектированию реляционной базы данных и анализу продаж с использованием SQLite.
 
-The goal is to practice SQL and analyze sales data using SQLite.
+База данных моделирует работу вымышленной компании. Она содержит информацию о сотрудниках, отделах, клиентах, товарах и заказах.
 
-## Database tables
+**Цель проекта** — научиться работать с базами данных, анализировать выручку и находить полезные для бизнеса закономерности с помощью SQL-запросов.
 
-- `departments` — company departments
-- `employees` — employee information
-- `products` — product catalog
-- `customers` — customer information
-- `orders` — customer orders and their statuses
-- `order_items` — products included in each order
+## Структура базы данных
 
-## Analysis performed
+В проекте используются 6 связанных таблиц:
 
-1. Revenue and units sold by product
-2. Monthly revenue from completed orders
-3. Revenue by employee
-4. Revenue by city
-5. Average order value by city
+| Таблица | Описание |
+|---|---|
+| `departments` | Отделы компании |
+| `employees` | Сотрудники, должности и зарплаты |
+| `customers` | Клиенты и города |
+| `products` | Товары, цены и остатки на складе |
+| `orders` | Заказы, даты и статусы |
+| `order_items` | Состав заказов, количество товаров и цены продажи |
 
-## SQL skills demonstrated
+Таблицы связаны первичными и внешними ключами. Ограничения целостности помогают предотвращать некорректные данные, например отрицательные цены или нулевое количество товара в заказе.
 
-- `SELECT`, `WHERE`, `GROUP BY`, `ORDER BY`
-- `JOIN` and `LEFT JOIN`
-- Aggregate functions: `SUM()`, `COUNT()`
-- Conditional aggregation with `CASE`
-- Handling missing values with `COALESCE()`
-- Date formatting with `strftime()`
-- Calculating revenue and average order value
+## Какие задачи решены
 
-## Key findings
+С помощью SQL-запросов проведён анализ по пяти направлениям:
 
-- Total revenue from completed orders: **9,480**
-- Completed orders: **6**
-- Highest-revenue city: **Tashkent — 6,945**
-- Average order value in Tashkent: **1,736.25**
-- Average order value in Samarkand: **1,267.50**
+1. **Продажи товаров:** какие товары приносят наибольшую выручку.
+2. **Динамика продаж:** как меняется выручка по месяцам.
+3. **Эффективность сотрудников:** сколько выручки приходится на заказы каждого сотрудника.
+4. **Продажи по городам:** какие города приносят больше выручки.
+5. **Средний чек:** какова средняя стоимость завершённого заказа в каждом городе.
 
-## Tools
+При расчёте выручки учитываются только заказы со статусом `Completed` — завершённые.
+
+## Основные результаты
+
+По итогам анализа учебных данных:
+
+- **Общая выручка:** 9 480 условных денежных единиц.
+- **Количество завершённых заказов:** 6.
+- **Самый прибыльный по выручке товар:** Laptop — 4 680.
+- **Город с наибольшей выручкой:** Ташкент — 6 945.
+- **Средний чек в Ташкенте:** 1 736,25.
+- **Средний чек в Самарканде:** 1 267,50.
+
+Это результаты анализа искусственного набора данных, а не реальной компании.
+
+## Использованные навыки SQL
+
+- `SELECT` — выбор данных.
+- `WHERE` — фильтрация записей.
+- `JOIN` и `LEFT JOIN` — объединение связанных таблиц.
+- `GROUP BY` — группировка данных.
+- `ORDER BY` — сортировка результатов.
+- `SUM()` и `COUNT()` — расчёт выручки и количества заказов.
+- `CASE` — условные вычисления.
+- `COALESCE()` — обработка отсутствующих значений.
+- `strftime()` — группировка данных по месяцам в SQLite.
+- Проектирование таблиц, первичные и внешние ключи, ограничения целостности.
+- Расчёт выручки и среднего чека.
+
+## Файлы проекта
+
+| Файл | Назначение |
+|---|---|
+| `schema.sql` | Создание таблиц базы данных |
+| `seed.sql` | Заполнение таблиц тестовыми данными |
+| `analysis_queries.sql` | SQL-запросы для анализа продаж |
+| `company_database.db` | Готовая база данных SQLite |
+
+## Как запустить проект
+
+1. Скачайте репозиторий с GitHub.
+2. Откройте SQLiteStudio.
+3. Создайте новую пустую базу данных.
+4. Выполните SQL-код из файла `schema.sql`.
+5. Выполните SQL-код из файла `seed.sql`.
+6. Откройте `analysis_queries.sql` и запускайте запросы по одному.
+
+**Важно:** сначала создаются таблицы, затем добавляются данные. Скрипты создания и заполнения нужно выполнять на пустой базе данных, чтобы избежать ошибок из-за повторяющихся записей.
+
+## Инструменты
 
 - SQLite
-- SQLiteStudio / Letos
+- SQLiteStudio
 - SQL
+- GitHub
 
-## Data
+## Данные
 
-The database uses fictional sample data created for educational and portfolio purposes.
+Все сотрудники, клиенты, товары и заказы вымышлены. Данные созданы исключительно для обучения и демонстрации навыков анализа данных.
